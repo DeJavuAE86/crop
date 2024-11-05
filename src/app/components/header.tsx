@@ -1,4 +1,6 @@
+"use client"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FC } from "react"
 
 const linkData = [
@@ -8,6 +10,7 @@ const linkData = [
 ]
 const Header: FC = () => {
 
+  const pathname = usePathname();
   return (
     <div className="absolute w-full z-10">
       <div className="flex justify-between container mx-auto p-8 text-white">
@@ -15,7 +18,7 @@ const Header: FC = () => {
         <div className="flex space-x-4 text-xl">
           {linkData.map((link) => {
             return (
-              <Link key={link.name} href={link.href}>{link.name}</Link>
+              <Link className={pathname === link.href ? "text-purple-200" : ""} key={link.name} href={link.href}>{link.name}</Link>
             )
           })}
         </div>
